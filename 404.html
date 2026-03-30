@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbusoft | Cloud Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com');
+        
+        body { 
+            background: #0a0f1c; 
+            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; 
+            margin: 0; 
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            perspective: 1200px;
+        }
+
+        .infinity-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.15s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        .infinity-svg { width: 100%; height: auto; margin-bottom: 2rem; overflow: visible; }
+
+        .loop { fill: none; stroke: #4ade80; stroke-width: 2; opacity: 0.15; }
+
+        .flowing {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 3.5; 
+            stroke-linecap: round;
+            stroke-dasharray: 80 220; 
+            animation: flow 7s linear infinite;
+            filter: drop-shadow(0 0 12px #00f0ff);
+        }
+
+        @keyframes flow {
+            from { stroke-dashoffset: 600; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        .devops-text {
+            font-size: 7px;
+            fill: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
+
+        .btn-arbusoft {
+            background-color: #1f2937;
+            color: white;
+            padding: 0.75rem 2.5rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .btn-arbusoft:hover { background-color: #374151; transform: translateY(-2px); }
+
+        .contact-card {
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: left;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hidden-card { opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none; height: 0; padding: 0; overflow: hidden; margin: 0; }
+        .visible-card { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; height: auto; }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="hero" id="scene">
+        <h1 class="text-5xl md:text-7xl font-bold mb-2 tracking-tight">Arbusoft</h1>
+        <p class="text-gray-400 mb-8 text-lg md:text-xl font-light italic tracking-wide">Obrt za informatičke usluge</p>
+
+        <div class="infinity-container" id="card">
+            <svg class="infinity-svg" viewBox="0 0 240 120" xmlns="http://www.w3.org">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#00f0ff"/>
+                        <stop offset="50%" stop-color="#4ade80"/>
+                        <stop offset="100%" stop-color="#00f0ff"/>
+                    </linearGradient>
+                </defs>
+                <path id="p" d="M120,60 C120,20 40,20 40,60 C40,100 120,100 120,60 C120,20 200,20 200,60 C200,100 120,100 120,60" fill="none" />
+                <use href="#p" class="loop" />
+                <use href="#p" class="flowing" />
+                <text class="devops-text">
+                    <textPath href="#p" startOffset="2%">Plan</textPath>
+                    <textPath href="#p" startOffset="14%">Code</textPath>
+                    <textPath href="#p" startOffset="27%">Build</textPath>
+                    <textPath href="#p" startOffset="38%">Test</textPath>
+                    <textPath href="#p" startOffset="53%">Release</textPath>
+                    <textPath href="#p" startOffset="65%">Deploy</textPath>
+                    <textPath href="#p" startOffset="79%">Operate</textPath>
+                    <textPath href="#p" startOffset="91%">Monitor</textPath>
+                </text>
+            </svg>
+        </div>
+
+        <div class="flex flex-col items-center">
+            <button id="kontaktBtn" class="btn-arbusoft">Kontakt</button>
+            
+            <div id="contactCard" class="contact-card hidden-card">
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest">Naziv</p>
+                        <p class="text-gray-200">Arbusoft, obrt za informatičke usluge</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest">Sjedište</p>
+                        <p class="text-gray-200">Čileanska ulica 5, 10090 Zagreb-Susedgrad</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest">E-mail</p>
+                        <a href="mailto:info@arbusoft.hr" class="text-white font-medium hover:text-cyan-300 transition-colors">info@arbusoft.hr</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scene = document.getElementById('scene');
+        const card = document.getElementById('card');
+        const kontaktBtn = document.getElementById('kontaktBtn');
+        const contactCard = document.getElementById('contactCard');
+        let mouseX = 0, mouseY = 0;
+
+        // 3D Nagib
+        scene.addEventListener('mousemove', (e) => {
+            mouseX = (window.innerWidth / 2 - e.pageX) / 30;
+            mouseY = (window.innerHeight / 2 - e.pageY) / 30;
+            card.style.transform = `rotateY(${mouseX}deg) rotateX(${mouseY}deg)`;
+        });
+
+        scene.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+
+        // Kontakt Toggle
+        kontaktBtn.addEventListener('click', () => {
+            const isVisible = contactCard.classList.contains('visible-card');
+            contactCard.classList.toggle('hidden-card', isVisible);
+            contactCard.classList.toggle('visible-card', !isVisible);
+            kontaktBtn.innerText = isVisible ? 'Kontakt' : 'Zatvori';
+        });
+
+        // Čestice
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initParticles() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 85; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5, sX: (Math.random() - 0.5) * 0.3, sY: (Math.random() - 0.5) * 0.3
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(74, 222, 128, 0.3)';
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x + mouseX * 0.4, p.y + mouseY * 0.4, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.x += p.sX; p.y += p.sY;
+                if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles(); animate();
+    </script>
+</body>
+</html>
+
